@@ -1,0 +1,102 @@
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+hr {color:sienna;}
+a:link {color:blue;}      /* unvisited link */
+a:visited {color:blue;}  /* visited link */
+a:hover {color:green;}  /* mouse over link */
+a:active {color:#0000FF;}
+body
+{
+font-family:"Times New Roman";
+font-size:20px;
+text-indent:5px;
+text-align:justify;
+background-color:white;
+color:black;
+};
+p{
+left:2px;
+right:2px;
+}
+#container
+{
+margin:auto;
+width:1000px ;
+background-color:white;
+}
+
+#header{
+font-size:14px;
+position:absolute;
+top:0px;
+height:17px;
+width:950px;
+opacity:0.8;
+background-color:white;
+} 
+
+#lefts{
+position:absolute;
+top:140px;
+height:600px;
+width:180px;
+opacity:0.5;
+background-color:black;
+}
+
+#rights{
+
+}
+
+#content
+{
+position:relative;
+color:green;
+left:185px;
+top:140px;
+height:540px;
+width:760px;
+opacity:1;
+background-color:white;
+}
+#footer
+{
+position:absolute;
+width:950px ;
+opacity:0.5;
+background-color:black;
+} 
+
+table, td, th {
+    border: 1px solid green;
+}
+
+th {
+    background-color: green;
+    color: white;
+}
+

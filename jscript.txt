@@ -1,0 +1,59 @@
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+/*--------------------------------------------------------*/
+function balanceAmt( )
+{
+if (email=="")
+{
+alert("Please update email first.");
+return ;
+}
+tempurl="update.php?email="+email+"&action=balance" ;//Url for balance update
+updateURL(tempurl);
+document.getElementById("status").innerHTML="Wait processing ..." ;
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("status").innerHTML=" " ;
+    var  msgtext="Your approx. balance is $"+xmlhttp.responseText.trim() +".\n  Actual balance may be higher or lower after auditing.";
+    alert(msgtext);
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+/*-------------------------------------------------------------------------*/

@@ -1,0 +1,392 @@
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+ <script>
+ /*---------------------------------------------------------------*/
+ var email="";
+ var ref="";
+         var reflink="[http://kulhu.com/?email=[Your email]]";
+ var uid="958521115.250.231.239794200615662" ;
+ var emailclr="";
+ var tempurl="";
+ var myurl="";
+ var balance="";
+ var total="";
+ var tempemail="";
+ var KULHUSEARCH="";
+ var gr="";
+ /*--------------------------------------------------------------*/
+
+
+
+var inputboxtxt=""; // It is text value of input box
+var tempTxt="";
+
+function updateEmail()
+{
+//prompt("Enter  email to earn money .\n Credited amount to wrong email is  irrevocable.So please enter correct email.").trim();
+tempemail=inputboxtxt.trim();
+tempemail=tempemail.toLowerCase();
+
+if (tempemail=="null")
+{
+writeMsg("You did not enter email. Please click update email and enter email");
+
+return ;
+}
+
+if (tempemail=="")
+{
+writeMsg("You did not enter email. Please click update email and enter email");
+return ;
+}
+
+if (tempemail!="null")
+{
+email=tempemail; 
+inputboxtxt="";
+tempurl="update.php?email="+email+"&emailclr="+  emailclr +"&action=email&uip="+ uid +"&ref="+ref ;//Url for  Email update
+tempurl=tempurl.trim();
+updateURL(tempurl);
+document.getElementById("status").innerHTML="Wait processing ..." ;
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+     AiGiAronba(email);
+       document.getElementById("emailid").innerHTML=email ;
+     reflink="[http://kulhu.com/?email="+email+"]" ;
+     document.getElementById("status").innerHTML=" " ;
+    emailclr=email ;
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+}
+/*--------------------------------------------------------------*/
+
+
+
+
+
+function updateURL(updateurls)
+{
+myurl=updateurls;
+}
+
+/*-----------------------------------------------*/
+function balanceAmt( )
+{
+if (email=="")
+{
+alert("Please update email first.");
+return ;
+}
+tempurl="update.php?email="+email+"&action=balance" ;//Url for balance update
+updateURL(tempurl);
+document.getElementById("status").innerHTML="Wait processing ..." ;
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("status").innerHTML=" " ;
+    var  msgtext="Your approx. balance is $"+xmlhttp.responseText.trim() +".\n  Actual balance may be higher or lower after auditing.";
+    alert(msgtext);
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+
+/*--------------------------------------------------------------------------*/
+function updateDisplay(display,datavalue)
+{
+document.getElementById(display).innerHTML=datavalue ;
+}
+
+/*-------------------------------------------------------------------*/
+function iframe()
+{
+document.getElementById("frame").innerHTML='<iframe  src="http://f3061249.linkbucks.com" frameborder="0"  width="450px">Your browser does not support</iframe>';
+}
+/*------------------------------------*/
+
+function visit()
+ {
+ var ss = document.getElementById("site").value;
+ss=ss.trim();
+if (ss=="")
+{
+  writeMsg("Enter site name to visit"); 
+return ;
+}
+/* If email is blank, keep it block */
+if (email=="")
+{
+ writeMsg("Please update email "); 
+return ;
+}
+ss=ss.replace("https://","").trim();
+ss=ss.replace("http://","").trim();
+/*-----------------------------------------------*/
+document.getElementById("lastvisit").innerHTML="Last visit :<u>"+ss+"</u>";
+document.getElementById("status").innerHTML="";
+open("http://kulhu.com/visitplus/visit.php?email="+email+"&link="+ss+"&gr="+gr);
+AiGiAronba(email);
+}
+/*---------------------------------------------------------------------------*/
+function search()
+ {
+ var ss = document.getElementById("site").value;
+ss=ss.trim();
+
+if (ss=="")
+{
+writeMsg("Enter key word(s) to search"); 
+return ;
+}
+if (email=="")
+{
+writeMsg("Please update email ");
+return ;
+}
+document.getElementById("lastvisit").innerHTML="Last search:<u>"+ss+"</u>";
+document.getElementById("status").innerHTML="";
+ss="kulhu.com/visitplus/visit.php?email="+email+"&link=KULHUSEARCH " + ss+"&gr="+gr ;
+/*--------------------------------------------*/
+open("http://"+ss);
+AiGiAronba(email);
+}
+/*--------------------------------------------------*/
+function shop()
+ {
+ var ss = document.getElementById("site").value;
+ss=ss.trim();
+
+if (ss=="")
+{
+writeMsg("Enter item name to shop"); 
+return ;
+}
+if (email=="")
+{
+writeMsg("Please update email ");
+return ;
+}
+document.getElementById("lastvisit").innerHTML="Last search:<u>"+ss+"</u>";
+document.getElementById("status").innerHTML="";
+ss="kulhu.com/visitplus/visit.php?email="+email+"&link=KULHUSHOP " + ss+"&gr="+gr ;
+/*--------------------------------------------*/
+open("http://"+ss);
+AiGiAronba(email);
+}
+
+/*-------------------------------------------------*/
+function balanceUpdate(email)
+{
+tempurl="update.php?email="+email+"&action=balance" ;//Url for balance update
+updateURL(tempurl);
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("balance").innerHTML=" has balance of "+ xmlhttp.responseText.trim() ;
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+/*----------------------------------------------------*/
+function faq(para)
+{
+tempurl="faq.php?faq="+para ;//Url for balance update
+updateURL(tempurl);
+document.getElementById("status").innerHTML="Wait downloading..." ;
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+document.getElementById("status").innerHTML="" ;
+    document.getElementById("ramplatform").innerHTML=xmlhttp.responseText.trim() ;
+    
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+/*------------------------------------------------------*/
+function closeMsg()
+{
+document.getElementById("msg").innerHTML="";
+}
+
+
+function writeMsg(msg)
+{
+document.getElementById("msg").innerHTML='<p  style="float:left; background-color:yellow;">Visit(+)<button  onclick="closeMsg()">X</button> </br>' + msg +  '</p>';
+}
+
+function CreateInputBox(msg,fnc)
+   {
+      document.getElementById("msg").innerHTML='<p  style="float:left;   background-color:yellow;">Visit(+)<button  onclick="closeMsg()">X</button>  </br>'  + msg +  ' <input id="intxt" type="text"  name="intxtvalue" value="" > </br> <button  onclick="'+fnc+'">OK</button></p>';
+   }
+
+   function refreshData(fnctToCall)
+   {
+   fnctToCall ;
+   }
+function getInText()
+   {
+   inputboxtxt=document.getElementById("intxt").value;
+   closeMsg();
+   updateEmail(); 
+   }
+function updateMail()
+   {
+   CreateInputBox("Enter email to earn money .\n Credited amount to wrong email is irrevocable.So please enter correct email.","getInText()");
+   
+   }
+/*----------------------------------------------------*/
+function AiGiAronba(email)
+{
+tempurl="update.php?email="+email+"&action=gr";//Url for balance update
+updateURL(tempurl);
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    gr=xmlhttp.responseText.trim() ;
+    balanceUpdate(email);
+//selectAd('ads','adsrc');
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+
+/*----------------------Beginning of MyProfile----------------*/
+function myProfile()
+{
+var urlProfile='<br/><a href="http://kulhu.com/visitplus/address.php?email='+email+'" target="_blank">Update my profile</a>';
+if (email=="")
+{
+writeMsg("Please update email ");
+return ;
+}
+tempurl="update.php?email="+email+"&action=profile" ;//Url for balance update
+updateURL(tempurl);
+document.getElementById("status").innerHTML="Wait processing ..." ;
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+   if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("status").innerHTML="" ;
+    writeMsg(xmlhttp.responseText.trim()+urlProfile) ;
+   }
+   }
+xmlhttp.open("GET",myurl,true);
+xmlhttp.send();
+}
+
+/*---------------End of program-----------------------*/
+
+
+ 
+   function x(id)
+{
+document.getElementById(id).innerHTML="";
+}
+ 
+ </script>
+    <script src="visitplusjs.txt">
+     </script>
+     
+     
+     
+   <script>
+    function searchKeyPress(e)
+    {
+        if (e.keyCode == 13)
+        {
+            document.getElementById('actSearch').click();
+        }
+    }
+    </script>
